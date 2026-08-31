@@ -1,0 +1,98 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: ['class'],
+  content: ['./index.html', './**/*.{vue,js,ts,jsx,tsx}', '!./node_modules/**'],
+  theme: {
+    extend: {
+      colors: {
+        border: 'hsl(var(--border))',
+        blue: '#6078e4',
+        'blue-01': '#edf0fb',
+        'deep-blue': '#4d6dfd',
+        'green-01': '#f4faf9',
+        'deep-green': '#328c87',
+        'pink-01': '#fff1f5',
+        'pink-02': '#ffdfea',
+        'pink-03': '#ffbed4',
+        'pink-04': '#ff9ebf',
+        'pink-05': '#ff5d94',
+        'pink-06': '#ff4f8b',
+        brand: '#ff4081',
+        'brand-dark': '#ea306f',
+        red: '#f33f46',
+        'red-01': '#fbeeee',
+        orange: '#faac38',
+        yellow: '#ffc700',
+        'yellow-08': '#eb9100',
+        'sky-01': '#eef9fc',
+        'sky-02': '#e5f6fa',
+        'sky-09': '#3d7886',
+        'brand-border': '#e9ebec',
+        disable: '#dbdde0',
+        divider: '#f8f8f8',
+        'dm-mint': {
+          lighter: '#FAFFFF',
+          light: '#EBF7F7',
+          DEFAULT: '#D0ECEB',
+          dark: '#9DCACD',
+          darker: '#15AEA9',
+        },
+        'btn-mt': {
+          DEFAULT: '#EBF7F7',
+          dark: '#1f716e',
+          darker: '#227f7c',
+        },
+        'dm-gray': {
+          light: '#F7F7FA',
+          DEFAULT: '#B9B9C4',
+          dark: '#9293A2',
+        },
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        chart: {
+          1: 'hsl(var(--chart-1))',
+          2: 'hsl(var(--chart-2))',
+          3: 'hsl(var(--chart-3))',
+          4: 'hsl(var(--chart-4))',
+          5: 'hsl(var(--chart-5))',
+        },
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+    },
+  },
+  plugins: [require('tailwindcss-animate')],
+};
