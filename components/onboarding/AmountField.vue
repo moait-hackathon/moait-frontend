@@ -14,7 +14,7 @@ const emit = defineEmits<{
 <template>
   <div>
     <label
-      class="mb-1.5 block text-sm font-bold text-[#232631]"
+      class="mb-1.5 block text-sm font-bold text-foreground"
       :for="id"
     >
       {{ label }}
@@ -22,7 +22,7 @@ const emit = defineEmits<{
     <div class="relative">
       <input
         :id="id"
-        class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white pl-3.5 pr-9 text-right text-sm font-semibold text-[#232631] outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+        class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white pl-3.5 pr-9 text-right text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
         type="text"
         inputmode="numeric"
         :value="modelValue"

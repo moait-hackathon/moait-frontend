@@ -33,7 +33,7 @@ function onSelect(row: HoldingAssetRow, value: string) {
 
 <template>
   <fieldset class="rounded-2xl border border-dm-gray/30 bg-white p-4">
-    <legend class="px-1 text-sm font-bold text-[#232631]">
+    <legend class="px-1 text-sm font-bold text-foreground">
       현재 보유한 투자자산과 금액을 입력해주세요
     </legend>
     <p class="mt-1 px-1 text-[11px] text-dm-gray-dark">없으면 비워두어도 돼요.</p>
@@ -45,7 +45,7 @@ function onSelect(row: HoldingAssetRow, value: string) {
         class="flex items-center gap-2"
       >
         <select
-          class="h-[44px] w-[112px] shrink-0 rounded-xl border border-dm-gray/40 bg-white px-2.5 text-sm font-semibold text-[#232631] outline-none focus:border-pink-03"
+          class="h-[44px] w-[112px] shrink-0 rounded-xl border border-dm-gray/40 bg-white px-2.5 text-sm font-semibold text-foreground outline-none focus:border-pink-03"
           :value="row.type ?? ''"
           @change="onSelect(row, ($event.target as HTMLSelectElement).value)"
         >
@@ -61,7 +61,7 @@ function onSelect(row: HoldingAssetRow, value: string) {
         <div class="relative flex-1">
           <input
             v-model="row.amount"
-            class="h-[44px] w-full rounded-xl border border-dm-gray/40 bg-white pl-3 pr-8 text-right text-sm font-semibold text-[#232631] outline-none focus:border-pink-03"
+            class="h-[44px] w-full rounded-xl border border-dm-gray/40 bg-white pl-3 pr-8 text-right text-sm font-semibold text-foreground outline-none focus:border-pink-03"
             type="text"
             inputmode="numeric"
             placeholder="0"

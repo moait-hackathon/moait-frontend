@@ -13,7 +13,7 @@ const { annualIncome, totalAsset, canSubmit, errorMessage, isSubmitting, submit 
     @submit.prevent="submit"
   >
     <header>
-      <h2 class="text-lg font-extrabold text-[#232631]">기본 재무정보</h2>
+      <h2 class="text-lg font-extrabold text-foreground">기본 재무정보</h2>
       <p class="mt-1 text-xs text-dm-gray-dark">투자성향 분석을 위한 기본 정보예요.</p>
     </header>
 

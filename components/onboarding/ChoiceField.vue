@@ -14,7 +14,7 @@ const emit = defineEmits<{
 
 <template>
   <fieldset class="rounded-2xl border border-dm-gray/30 bg-white p-4">
-    <legend class="px-1 text-sm font-bold text-[#232631]">{{ label }}</legend>
+    <legend class="px-1 text-sm font-bold text-foreground">{{ label }}</legend>
     <div class="mt-2 flex flex-col gap-2">
       <label
         v-for="option in options"

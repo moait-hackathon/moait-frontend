@@ -29,7 +29,7 @@ const { phone, password, errorMessage, isSubmitting, submit } = useLogin();
           <input
             id="login-phone"
             v-model="phone"
-            class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-[#232631] outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+            class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
             type="tel"
             name="phone"
             inputmode="numeric"
@@ -50,7 +50,7 @@ const { phone, password, errorMessage, isSubmitting, submit } = useLogin();
           <input
             id="login-password"
             v-model="password"
-            class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-[#232631] outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+            class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
             type="password"
             name="password"
             autocomplete="current-password"
@@ -80,6 +80,7 @@ const { phone, password, errorMessage, isSubmitting, submit } = useLogin();
       </form>
 
       <!-- TODO: 소셜 로그인 연결 (현재 UI만, 동작 없음) -->
+      <!-- TODO: 카카오 브랜드 색상(#FEE500) 토큰 등록 검토 -->
       <button
         class="mt-3 flex h-[50px] w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-[#FEE500] opacity-60"
         type="button"

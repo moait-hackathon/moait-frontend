@@ -20,7 +20,7 @@ const term = computed(() => TERMS.find((item) => item.slug === route.params.term
     />
 
     <article class="flex-1 bg-white px-5 pb-10 pt-6 text-dm-gray-dark sm:px-10">
-      <h2 class="mb-2 text-base font-extrabold text-[#232631]">
+      <h2 class="mb-2 text-base font-extrabold text-foreground">
         {{ term?.label ?? '약관 정보를 찾을 수 없어요' }}
       </h2>
       <p class="mb-6 text-[11px] leading-5 text-dm-gray-dark">

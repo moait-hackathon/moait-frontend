@@ -44,7 +44,7 @@ const {
     @submit.prevent="submit"
   >
     <header>
-      <h2 class="text-lg font-extrabold text-[#232631]">투자성향 설문</h2>
+      <h2 class="text-lg font-extrabold text-foreground">투자성향 설문</h2>
       <p class="mt-1 text-xs text-dm-gray-dark">7개 문항에 답하면 투자성향 유형이 나와요.</p>
     </header>
 

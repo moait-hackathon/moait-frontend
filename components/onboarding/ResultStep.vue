@@ -23,14 +23,14 @@ function goHome() {
       >🎉</span
     >
     <p class="mt-4 text-xs font-extrabold text-brand-dark">나의 투자성향 유형</p>
-    <h2 class="mt-1 text-[26px] font-black tracking-[-0.04em] text-[#232631]">
+    <h2 class="mt-1 text-[26px] font-black tracking-[-0.04em] text-foreground">
       {{ result.riskProfileTypeLabel }}
     </h2>
 
     <div class="mt-6 rounded-2xl border border-dm-gray/30 bg-white p-5 text-left">
       <div class="flex items-center justify-between">
         <span class="text-sm font-bold text-dm-gray-dark">투자성향 점수</span>
-        <span class="text-lg font-black text-[#232631]">{{ result.riskProfileScore }}</span>
+        <span class="text-lg font-black text-foreground">{{ result.riskProfileScore }}</span>
       </div>
       <p class="mt-3 break-keep text-sm leading-6 text-dm-gray-dark">{{ result.summary }}</p>
     </div>

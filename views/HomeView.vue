@@ -31,7 +31,7 @@ function logout() {
         aria-hidden="true"
         >🎉</span
       >
-      <h1 class="mt-3 text-xl font-black tracking-[-0.03em] text-[#232631]">
+      <h1 class="mt-3 text-xl font-black tracking-[-0.03em] text-foreground">
         {{ displayName }}님, 온보딩을 마쳤어요
       </h1>
       <p class="mt-1 text-xs text-dm-gray-dark">여기부터는 이후 기능이 붙을 자리예요.</p>
@@ -42,7 +42,7 @@ function logout() {
       >
         <p class="text-xs font-extrabold text-brand-dark">나의 투자성향</p>
         <div class="mt-1 flex items-baseline justify-between">
-          <span class="text-lg font-black text-[#232631]">
+          <span class="text-lg font-black text-foreground">
             {{ investmentResult.riskProfileTypeLabel }}
           </span>
           <span class="text-sm font-bold text-dm-gray-dark">

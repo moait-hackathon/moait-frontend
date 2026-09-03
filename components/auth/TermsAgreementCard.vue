@@ -37,8 +37,7 @@ const allAgreed = computed(() => TERMS.every((term) => props.agreements[term.ter
       >
         ✓
       </span>
-      <!-- TODO: #232631 진한 제목 색상 토큰 등록 검토 -->
-      <strong class="text-sm font-extrabold text-[#232631]">약관 전체 동의</strong>
+      <strong class="text-sm font-extrabold text-foreground">약관 전체 동의</strong>
     </label>
 
     <div class="my-3 h-px bg-dm-gray/20"></div>
