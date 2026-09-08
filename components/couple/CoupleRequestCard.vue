@@ -42,10 +42,10 @@ function handleAccept() {
 
 <template>
   <li
-    class="flex min-w-0 items-center gap-3 rounded-2xl border border-pink-03/45 bg-pink-01 px-3.5 py-3"
+    class="flex min-w-0 items-center gap-3 rounded-2xl border border-primary/40 bg-accent px-3.5 py-3"
   >
     <span
-      class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-dm-gray-light text-brand-dark"
+      class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-muted text-primary"
       aria-hidden="true"
     >
       <svg
@@ -65,14 +65,14 @@ function handleAccept() {
       <strong class="block truncate text-sm font-extrabold text-foreground">
         {{ request.partnerName }}
       </strong>
-      <span class="mt-0.5 block text-[11px] text-dm-gray-dark">
+      <span class="mt-0.5 block text-[11px] text-muted-foreground">
         {{ roleLabel }} · {{ genderLabel }}
       </span>
     </span>
 
     <button
       type="button"
-      class="shrink-0 rounded-full bg-brand px-3 py-1.5 text-[11px] font-extrabold text-white transition disabled:cursor-default disabled:opacity-70"
+      class="shrink-0 rounded-full bg-primary px-3 py-1.5 text-[11px] font-extrabold text-primary-foreground transition disabled:cursor-default disabled:opacity-70"
       :disabled="acceptDisabled || isAccepting || request.status !== 'REQUESTED'"
       :aria-label="`${request.partnerName}님의 연결 요청 ${buttonLabel}`"
       @click="handleAccept"

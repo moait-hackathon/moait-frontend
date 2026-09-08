@@ -109,7 +109,7 @@ const STEP_TITLES = [
               <input
                 id="goal-target-date"
                 v-model="targetDate"
-                class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+                class="h-[46px] w-full rounded-xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition focus:border-ring focus:ring-3 focus:ring-ring/20"
                 type="date"
                 :min="minDate"
               />
@@ -137,7 +137,7 @@ const STEP_TITLES = [
                   v-for="amount in MONTHLY_INVESTABLE_QUICK_AMOUNTS"
                   :key="amount"
                   type="button"
-                  class="rounded-full border border-dm-gray/40 px-3 py-1.5 text-xs font-semibold text-dm-gray-dark transition hover:border-pink-03 hover:bg-pink-01 hover:text-brand-dark"
+                  class="rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground transition hover:border-ring hover:bg-accent hover:text-primary"
                   @click="monthlyInvestableAmount = formatAmount(amount)"
                 >
                   {{ formatAmount(amount) }}원

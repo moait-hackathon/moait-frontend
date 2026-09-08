@@ -2,7 +2,6 @@
 import { onMounted } from 'vue';
 
 import AuthScreen from '@/components/auth/AuthScreen.vue';
-import OnboardingStepHeader from '@/components/common/OnboardingStepHeader.vue';
 import CoupleConnectForm from '@/components/couple/CoupleConnectForm.vue';
 import { useCoupleConnect } from '@/composables/useCoupleConnect';
 
@@ -34,16 +33,11 @@ onMounted(() => {
 <template>
   <AuthScreen>
     <div class="flex min-h-dvh flex-1 flex-col bg-white">
-      <OnboardingStepHeader
-        :step="1"
-        :total-steps="2"
-      />
-
-      <main class="flex-1 px-5 pb-10 pt-4 sm:px-8">
+      <main class="flex-1 px-5 pb-10 pt-[max(28px,env(safe-area-inset-top))] sm:px-8">
         <h1 class="text-[22px] font-extrabold leading-tight tracking-[-0.03em] text-foreground">
           상대를 연결해주세요
         </h1>
-        <p class="mt-1.5 text-xs leading-5 text-dm-gray-dark">
+        <p class="mt-1.5 text-xs leading-5 text-muted-foreground">
           초대 코드로 두 사람의 공동 목표 공간을 만들어요.
         </p>
 
