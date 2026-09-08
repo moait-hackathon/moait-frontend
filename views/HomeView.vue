@@ -1,21 +1,25 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 import AuthScreen from '@/components/auth/AuthScreen.vue';
 import { ROUTE_NAMES } from '@/constants/routes';
 import { useAuthStore } from '@/stores/authStore';
-import { loadInvestmentResult } from '@/utils/investmentResult';
+import { useGoalStore } from '@/stores/goalStore';
+import { formatAmount } from '@/utils/format';
 
 const router = useRouter();
 const authStore = useAuthStore();
+const goalStore = useGoalStore();
 const { user } = storeToRefs(authStore);
-
-// 투자성향 조회 API 가 없어 localStorage 에 저장해 둔 설문 제출 결과를 읽는다.
-const investmentResult = ref(loadInvestmentResult());
+const { goal, loaded } = storeToRefs(goalStore);
 
 const displayName = computed(() => user.value?.name ?? '회원');
+
+onMounted(() => {
+  if (!goalStore.loaded) void goalStore.loadGoal();
+});
 
 function logout() {
   authStore.logout();
@@ -34,25 +38,45 @@ function logout() {
       <h1 class="mt-3 text-xl font-black tracking-[-0.03em] text-foreground">
         {{ displayName }}님, 온보딩을 마쳤어요
       </h1>
-      <p class="mt-1 text-xs text-dm-gray-dark">여기부터는 이후 기능이 붙을 자리예요.</p>
+      <p class="mt-1 text-xs text-dm-gray-dark">공동 목표 현황이에요.</p>
 
       <div
-        v-if="investmentResult"
+        v-if="goal"
         class="mt-6 rounded-2xl border border-dm-gray/30 bg-white p-5"
       >
-        <p class="text-xs font-extrabold text-brand-dark">나의 투자성향</p>
-        <div class="mt-1 flex items-baseline justify-between">
-          <span class="text-lg font-black text-foreground">
-            {{ investmentResult.riskProfileTypeLabel }}
+        <div class="flex items-baseline justify-between">
+          <span class="text-xs font-extrabold text-brand-dark">
+            {{ goal.jointRiskProfileTypeLabel }}
           </span>
           <span class="text-sm font-bold text-dm-gray-dark">
-            {{ investmentResult.riskProfileScore }}점
+            위험점수 {{ goal.riskProfileScore }}
           </span>
         </div>
-        <p class="mt-2 break-keep text-sm leading-6 text-dm-gray-dark">
-          {{ investmentResult.summary }}
+        <div class="mt-3">
+          <div class="flex items-baseline justify-between text-sm">
+            <span class="font-black text-foreground">{{ goal.progress.rate }}%</span>
+            <span class="text-dm-gray-dark">
+              {{ formatAmount(goal.currentAmount) }} / {{ formatAmount(goal.targetAmount) }}원
+            </span>
+          </div>
+          <div class="mt-1.5 h-2 overflow-hidden rounded-full bg-dm-gray/15">
+            <span
+              class="block h-full rounded-full bg-brand"
+              :style="{ width: `${Math.min(goal.progress.rate, 100)}%` }"
+            ></span>
+          </div>
+        </div>
+        <p class="mt-3 text-xs text-dm-gray-dark">
+          목표일 {{ goal.targetDate }} · 월 {{ formatAmount(goal.progress.requiredMonthlyAmount) }}원 필요
         </p>
       </div>
+
+      <p
+        v-else-if="loaded"
+        class="mt-6 rounded-2xl border border-dm-gray/30 bg-white p-5 text-sm text-dm-gray-dark"
+      >
+        공동 목표 정보를 불러오지 못했어요.
+      </p>
 
       <button
         class="mt-auto grid min-h-[48px] w-full place-items-center rounded-xl border border-dm-gray/40 bg-white text-sm font-bold text-dm-gray-dark transition hover:bg-dm-gray/10"

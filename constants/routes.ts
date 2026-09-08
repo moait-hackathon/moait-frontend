@@ -5,15 +5,17 @@ export const ROUTE_NAMES = {
   LOGIN: 'login',
   SIGNUP: 'signup',
   TERMS: 'signup-terms',
-  ONBOARDING: 'onboarding',
+  COUPLE_CONNECT: 'couple-connect',
+  GOAL_ONBOARDING: 'goal-onboarding',
   HOME: 'home',
 } as const;
 
 export type RouteName = (typeof ROUTE_NAMES)[keyof typeof ROUTE_NAMES];
 
-// onboardingStep 값에 따라 이동할 라우트. 온보딩은 단일 뷰라 DONE 만 홈으로 분기한다.
+// onboardingStep 값에 따라 이동할 라우트.
+// COUPLE_CONNECT → 커플 연결, GOAL_ONBOARDING → 공동 목표 5단계, DONE → 홈.
 export const ONBOARDING_STEP_ROUTE = {
-  FINANCIAL_INFO: ROUTE_NAMES.ONBOARDING,
-  INVESTMENT_PROFILE: ROUTE_NAMES.ONBOARDING,
+  COUPLE_CONNECT: ROUTE_NAMES.COUPLE_CONNECT,
+  GOAL_ONBOARDING: ROUTE_NAMES.GOAL_ONBOARDING,
   DONE: ROUTE_NAMES.HOME,
 } as const satisfies Record<OnboardingStep, RouteName>;
