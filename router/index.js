@@ -10,6 +10,9 @@ import HomeView from '@/views/HomeView.vue';
 import CoupleConnectView from '@/views/onboarding/CoupleConnectView.vue';
 import GoalOnboardingView from '@/views/onboarding/GoalOnboardingView.vue';
 import AiChatView from '@/views/ai/AiChatView.vue';
+import AiReportView from '@/views/ai/AiReportView.vue';
+
+import { AI_REPORT_ROUTE_NAME, DEFAULT_AI_REPORT_VARIANT } from '@/constants/aiReport';
 
 const PUBLIC_ROUTE_NAMES = [ROUTE_NAMES.LOGIN, ROUTE_NAMES.SIGNUP, ROUTE_NAMES.TERMS];
 
@@ -45,6 +48,11 @@ const router = createRouter({
     },
     { path: '/home', name: ROUTE_NAMES.HOME, component: HomeView },
     { path: '/ai', name: 'ai', component: AiChatView },
+    {
+      path: `/ai/report/:variant(${DEFAULT_AI_REPORT_VARIANT}|adjust)?`,
+      name: AI_REPORT_ROUTE_NAME,
+      component: AiReportView,
+    },
     { path: '/:pathMatch(.*)*', redirect: { name: ROUTE_NAMES.HOME } },
   ],
   scrollBehavior: () => ({ top: 0 }),
