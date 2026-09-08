@@ -19,8 +19,8 @@ defineProps<{
       class="max-w-[82%] rounded-2xl px-4 py-3 text-sm font-medium leading-6 shadow-sm"
       :class="
         message.role === 'user'
-          ? 'ml-auto rounded-br-md bg-primary text-primary-foreground'
-          : 'mr-auto rounded-bl-md border border-border bg-white text-foreground'
+          ? 'ml-auto rounded-br-md bg-dm-mint-darker text-white'
+          : 'mr-auto rounded-bl-md border border-dm-gray/25 bg-white text-foreground'
       "
     >
       {{ message.content }}
