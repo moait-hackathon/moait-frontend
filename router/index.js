@@ -12,6 +12,13 @@ import GoalOnboardingView from '@/views/onboarding/GoalOnboardingView.vue';
 
 const PUBLIC_ROUTE_NAMES = [ROUTE_NAMES.LOGIN, ROUTE_NAMES.SIGNUP, ROUTE_NAMES.TERMS];
 
+// 온보딩 단계별로 머물러야 하는 라우트. 다른 온보딩/홈 화면 접근 시 되돌린다.
+const STEP_ALLOWED_ROUTE_NAMES = {
+  COUPLE_CONNECT: [ROUTE_NAMES.COUPLE_CONNECT],
+  GOAL_ONBOARDING: [ROUTE_NAMES.COUPLE_CONNECT, ROUTE_NAMES.GOAL_ONBOARDING],
+  DONE: [ROUTE_NAMES.HOME],
+};
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -52,8 +59,16 @@ router.beforeEach(async (to) => {
     return { name: ROUTE_NAMES.LOGIN };
   }
 
-  if (authed && (to.name === ROUTE_NAMES.LOGIN || to.name === ROUTE_NAMES.SIGNUP)) {
-    const step = authStore.onboardingStep ?? 'COUPLE_CONNECT';
+  if (!authed) return true;
+
+  const step = authStore.onboardingStep;
+
+  if (to.name === ROUTE_NAMES.LOGIN || to.name === ROUTE_NAMES.SIGNUP) {
+    return { name: ONBOARDING_STEP_ROUTE[step ?? 'COUPLE_CONNECT'] };
+  }
+
+  // 진행 단계를 아는 경우에만 게이팅한다(모르면 통과시켜 화면에서 처리).
+  if (step && !STEP_ALLOWED_ROUTE_NAMES[step].includes(to.name)) {
     return { name: ONBOARDING_STEP_ROUTE[step] };
   }
 
