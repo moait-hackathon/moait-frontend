@@ -2,6 +2,8 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
 import { getMe } from '@/server/userApi';
+import { useCoupleStore } from '@/stores/coupleStore';
+import { useGoalStore } from '@/stores/goalStore';
 import type { UserResponseDto } from '@/types/dto/user.dto';
 import type { OnboardingStep } from '@/types/onboarding';
 import { clearAccessToken, hasAccessToken, setAccessToken } from '@/utils/auth';
@@ -52,6 +54,8 @@ export const useAuthStore = defineStore('auth', () => {
 
   function logout() {
     clearAccessToken();
+    useCoupleStore().reset();
+    useGoalStore().reset();
     reset();
   }
 
