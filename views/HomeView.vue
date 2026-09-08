@@ -26,4 +26,3 @@ const hasUnreadNotifications = true;
     </section>
   </div>
 </template>
-```
