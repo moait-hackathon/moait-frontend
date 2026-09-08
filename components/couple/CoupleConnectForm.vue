@@ -4,7 +4,6 @@ import type { CoupleRequest } from '@/types/couple';
 
 defineProps<{
   myInviteCode: string;
-  shareUrl: string;
   requests: CoupleRequest[];
   isConnected: boolean;
   isLoadingInviteCode: boolean;
@@ -21,7 +20,6 @@ const emit = defineEmits<{
   confirm: [];
   accept: [partnerUserId: number];
   copyCode: [];
-  copyShareUrl: [];
   refresh: [];
 }>();
 
@@ -66,23 +64,13 @@ const inviteCode = defineModel<string>('inviteCode', { required: true });
           복사
         </button>
       </div>
-      <div class="mt-2 flex items-center justify-between gap-3">
-        <p
-          class="min-h-4 text-[11px] leading-4"
-          :class="copyMessage ? 'text-btn-mt-dark' : 'text-dm-gray-dark'"
-          aria-live="polite"
-        >
-          {{ copyMessage || '상대에게 내 코드를 공유해주세요.' }}
-        </p>
-        <button
-          v-if="shareUrl"
-          type="button"
-          class="shrink-0 text-[11px] font-extrabold text-brand-dark underline underline-offset-2"
-          @click="emit('copyShareUrl')"
-        >
-          공유 링크 복사
-        </button>
-      </div>
+      <p
+        class="mt-2 min-h-4 text-[11px] leading-4"
+        :class="copyMessage ? 'text-btn-mt-dark' : 'text-dm-gray-dark'"
+        aria-live="polite"
+      >
+        {{ copyMessage || '상대에게 내 코드를 공유해주세요.' }}
+      </p>
     </section>
 
     <!-- 상대 코드 -->

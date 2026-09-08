@@ -8,7 +8,6 @@ import { useCoupleConnect } from '@/composables/useCoupleConnect';
 
 const {
   myInviteCode,
-  shareUrl,
   requests,
   inviteCode,
   feedback,
@@ -24,7 +23,6 @@ const {
   confirm,
   accept,
   copyCode,
-  copyShareUrl,
   refresh,
 } = useCoupleConnect();
 
@@ -53,7 +51,6 @@ onMounted(() => {
           <CoupleConnectForm
             v-model:invite-code="inviteCode"
             :my-invite-code="myInviteCode"
-            :share-url="shareUrl"
             :requests="requests"
             :is-connected="isConnected"
             :is-loading-invite-code="isLoadingInviteCode"
@@ -67,7 +64,6 @@ onMounted(() => {
             @confirm="confirm"
             @accept="accept"
             @copy-code="copyCode"
-            @copy-share-url="copyShareUrl"
             @refresh="refresh"
           />
         </div>

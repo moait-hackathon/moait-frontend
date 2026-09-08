@@ -29,7 +29,8 @@ export interface CoupleConnectResponseDto {
   // 상대가 아직이면 WAIT, 상대가 이미 내 코드를 넣어뒀으면 즉시 CONNECTED.
   status: 'WAIT' | 'CONNECTED';
   partner: CouplePartyDto;
-  connectedAt?: string;
+  // CONNECTED 일 때만 값이 있고, WAIT 이면 null.
+  connectedAt: string | null;
 }
 
 // POST /couples/requests/{partnerUserId}/accept

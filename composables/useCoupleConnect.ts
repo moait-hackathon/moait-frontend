@@ -34,7 +34,6 @@ export function useCoupleConnect() {
   const coupleStore = useCoupleStore();
 
   const myInviteCode = ref('');
-  const shareUrl = ref('');
   const requests = ref<CoupleRequest[]>([]);
 
   const feedback = ref('');
@@ -86,10 +85,8 @@ export function useCoupleConnect() {
     try {
       const response = await getInviteCode();
       myInviteCode.value = response.inviteCode.trim().toUpperCase();
-      shareUrl.value = response.shareUrl;
     } catch {
       myInviteCode.value = '';
-      shareUrl.value = '';
     } finally {
       isLoadingInviteCode.value = false;
     }
@@ -186,10 +183,6 @@ export function useCoupleConnect() {
     }
   }
 
-  function copyShareUrl() {
-    if (shareUrl.value) void copyText(shareUrl.value, '공유 링크를 복사했어요.');
-  }
-
   function refresh() {
     void loadStatus();
   }
@@ -217,7 +210,6 @@ export function useCoupleConnect() {
 
   return {
     myInviteCode,
-    shareUrl,
     requests,
     inviteCode,
     feedback,
@@ -233,7 +225,6 @@ export function useCoupleConnect() {
     confirm,
     accept,
     copyCode,
-    copyShareUrl,
     refresh,
   };
 }
