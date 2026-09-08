@@ -38,26 +38,26 @@ const inviteCode = defineModel<string>('inviteCode', { required: true });
       </h2>
       <div class="grid grid-cols-[minmax(0,1fr)_64px] gap-2">
         <output
-          class="flex h-[52px] min-w-0 items-center rounded-xl border border-dm-gray/35 bg-dm-gray-light px-4 font-mono text-sm font-extrabold tracking-[0.12em] text-foreground"
+          class="flex h-[52px] min-w-0 items-center rounded-xl border border-border bg-accent px-4 font-mono text-sm font-extrabold tracking-[0.12em] text-foreground"
           aria-live="polite"
         >
           <span
             v-if="isLoadingInviteCode"
-            class="font-sans text-xs font-medium tracking-normal text-dm-gray-dark"
+            class="font-sans text-xs font-medium tracking-normal text-muted-foreground"
           >
             불러오는 중...
           </span>
           <span v-else-if="myInviteCode">{{ myInviteCode }}</span>
           <span
             v-else
-            class="font-sans text-xs font-medium tracking-normal text-dm-gray"
+            class="font-sans text-xs font-medium tracking-normal text-muted-foreground"
           >
             코드를 불러올 수 없어요
           </span>
         </output>
         <button
           type="button"
-          class="grid h-[52px] place-items-center rounded-xl border border-dm-gray/35 bg-dm-gray-light text-xs font-extrabold text-foreground transition enabled:hover:border-pink-03 enabled:hover:bg-pink-01 disabled:cursor-not-allowed disabled:text-dm-gray"
+          class="grid h-[52px] place-items-center rounded-xl bg-primary text-xs font-extrabold text-primary-foreground transition enabled:hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
           :disabled="isLoadingInviteCode || !myInviteCode"
           @click="emit('copyCode')"
         >
@@ -66,7 +66,7 @@ const inviteCode = defineModel<string>('inviteCode', { required: true });
       </div>
       <p
         class="mt-2 min-h-4 text-[11px] leading-4"
-        :class="copyMessage ? 'text-btn-mt-dark' : 'text-dm-gray-dark'"
+        :class="copyMessage ? 'text-foreground' : 'text-muted-foreground'"
         aria-live="polite"
       >
         {{ copyMessage || '상대에게 내 코드를 공유해주세요.' }}
@@ -88,11 +88,11 @@ const inviteCode = defineModel<string>('inviteCode', { required: true });
         <input
           id="couple-invite-code"
           v-model="inviteCode"
-          class="h-[52px] min-w-0 rounded-xl border px-4 font-mono text-sm font-extrabold uppercase tracking-[0.12em] text-foreground outline-none transition placeholder:font-sans placeholder:text-xs placeholder:font-medium placeholder:normal-case placeholder:tracking-normal placeholder:text-dm-gray"
+          class="h-[52px] min-w-0 rounded-xl border px-4 font-mono text-sm font-extrabold uppercase tracking-[0.12em] text-foreground outline-none transition placeholder:font-sans placeholder:text-xs placeholder:font-medium placeholder:normal-case placeholder:tracking-normal placeholder:text-muted-foreground"
           :class="
             errorMessage
-              ? 'border-brand focus:ring-3 focus:ring-brand/15'
-              : 'border-dm-gray/35 focus:border-pink-03 focus:ring-3 focus:ring-brand/10'
+              ? 'border-primary focus:ring-3 focus:ring-ring/20'
+              : 'border-border focus:border-ring focus:ring-3 focus:ring-ring/20'
           "
           type="text"
           inputmode="text"
@@ -106,7 +106,7 @@ const inviteCode = defineModel<string>('inviteCode', { required: true });
         />
         <button
           type="submit"
-          class="grid h-[52px] place-items-center rounded-xl border border-dm-gray/35 bg-dm-gray-light text-[13px] font-extrabold text-foreground transition enabled:hover:border-pink-03 enabled:hover:bg-pink-01 disabled:cursor-not-allowed disabled:text-dm-gray"
+          class="grid h-[52px] place-items-center rounded-xl bg-primary text-[13px] font-extrabold text-primary-foreground transition enabled:hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
           :disabled="!canConfirm"
         >
           {{ isSubmitting ? '확인 중' : '확인' }}
@@ -114,7 +114,7 @@ const inviteCode = defineModel<string>('inviteCode', { required: true });
       </div>
       <p
         class="mt-2 min-h-4 text-[11px] leading-4"
-        :class="errorMessage ? 'text-brand-dark' : feedback ? 'text-btn-mt-dark' : 'text-dm-gray-dark'"
+        :class="errorMessage ? 'text-primary' : feedback ? 'text-foreground' : 'text-muted-foreground'"
         role="status"
         aria-live="polite"
       >
@@ -128,7 +128,7 @@ const inviteCode = defineModel<string>('inviteCode', { required: true });
         <h2 class="text-xs font-extrabold text-foreground">연결 요청</h2>
         <button
           type="button"
-          class="text-[11px] font-extrabold text-brand-dark underline underline-offset-2 disabled:text-dm-gray"
+          class="text-[11px] font-extrabold text-primary underline underline-offset-2 disabled:text-muted-foreground"
           :disabled="isLoadingStatus"
           @click="emit('refresh')"
         >
@@ -152,13 +152,13 @@ const inviteCode = defineModel<string>('inviteCode', { required: true });
 
     <div
       v-if="isConnected"
-      class="flex items-center gap-2 rounded-xl bg-dm-mint-light px-3.5 py-3 text-xs font-bold text-btn-mt-dark"
+      class="flex items-center gap-2 rounded-xl bg-muted px-3.5 py-3 text-xs font-bold text-foreground"
       role="status"
     >
       상대 연결이 완료되었어요.
     </div>
 
-    <p class="text-center text-[11px] leading-4 text-dm-gray-dark">
+    <p class="text-center text-[11px] leading-4 text-muted-foreground">
       한 계정은 하나의 커플만 연결할 수 있어요.
     </p>
   </div>

@@ -13,11 +13,11 @@ defineEmits<{ primary: [] }>();
 
 <template>
   <footer
-    class="shrink-0 border-t border-dm-gray/10 bg-white px-5 pb-[max(18px,env(safe-area-inset-bottom))] pt-3 sm:px-8"
+    class="shrink-0 border-t border-border bg-white px-5 pb-[max(18px,env(safe-area-inset-bottom))] pt-3 sm:px-8"
   >
     <p
       v-if="errorMessage"
-      class="mb-2 text-xs font-semibold text-brand-dark"
+      class="mb-2 text-xs font-semibold text-primary"
       role="alert"
       aria-live="polite"
     >
@@ -25,7 +25,7 @@ defineEmits<{ primary: [] }>();
     </p>
     <button
       type="button"
-      class="grid h-[54px] w-full place-items-center rounded-xl bg-brand text-[15px] font-extrabold text-white transition enabled:hover:bg-brand-dark disabled:cursor-not-allowed disabled:bg-dm-gray/45"
+      class="grid h-[54px] w-full place-items-center rounded-xl bg-primary text-[15px] font-extrabold text-primary-foreground transition enabled:hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-muted"
       :disabled="disabled"
       @click="$emit('primary')"
     >

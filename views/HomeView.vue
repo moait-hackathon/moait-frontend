@@ -38,48 +38,48 @@ function logout() {
       <h1 class="mt-3 text-xl font-black tracking-[-0.03em] text-foreground">
         {{ displayName }}님, 온보딩을 마쳤어요
       </h1>
-      <p class="mt-1 text-xs text-dm-gray-dark">공동 목표 현황이에요.</p>
+      <p class="mt-1 text-xs text-muted-foreground">공동 목표 현황이에요.</p>
 
       <div
         v-if="goal"
-        class="mt-6 rounded-2xl border border-dm-gray/30 bg-white p-5"
+        class="mt-6 rounded-2xl border border-border bg-white p-5"
       >
         <div class="flex items-baseline justify-between">
-          <span class="text-xs font-extrabold text-brand-dark">
+          <span class="text-xs font-extrabold text-primary">
             {{ goal.jointRiskProfileTypeLabel }}
           </span>
-          <span class="text-sm font-bold text-dm-gray-dark">
+          <span class="text-sm font-bold text-muted-foreground">
             위험점수 {{ goal.riskProfileScore }}
           </span>
         </div>
         <div class="mt-3">
           <div class="flex items-baseline justify-between text-sm">
             <span class="font-black text-foreground">{{ goal.progress.rate }}%</span>
-            <span class="text-dm-gray-dark">
+            <span class="text-muted-foreground">
               {{ formatAmount(goal.currentAmount) }} / {{ formatAmount(goal.targetAmount) }}원
             </span>
           </div>
-          <div class="mt-1.5 h-2 overflow-hidden rounded-full bg-dm-gray/15">
+          <div class="mt-1.5 h-2 overflow-hidden rounded-full bg-muted">
             <span
-              class="block h-full rounded-full bg-brand"
+              class="block h-full rounded-full bg-primary"
               :style="{ width: `${Math.min(goal.progress.rate, 100)}%` }"
             ></span>
           </div>
         </div>
-        <p class="mt-3 text-xs text-dm-gray-dark">
+        <p class="mt-3 text-xs text-muted-foreground">
           목표일 {{ goal.targetDate }} · 월 {{ formatAmount(goal.progress.requiredMonthlyAmount) }}원 필요
         </p>
       </div>
 
       <p
         v-else-if="loaded"
-        class="mt-6 rounded-2xl border border-dm-gray/30 bg-white p-5 text-sm text-dm-gray-dark"
+        class="mt-6 rounded-2xl border border-border bg-white p-5 text-sm text-muted-foreground"
       >
         공동 목표 정보를 불러오지 못했어요.
       </p>
 
       <button
-        class="mt-auto grid min-h-[48px] w-full place-items-center rounded-xl border border-dm-gray/40 bg-white text-sm font-bold text-dm-gray-dark transition hover:bg-dm-gray/10"
+        class="mt-auto grid min-h-[48px] w-full place-items-center rounded-xl border border-border bg-white text-sm font-bold text-muted-foreground transition hover:bg-muted"
         type="button"
         @click="logout"
       >

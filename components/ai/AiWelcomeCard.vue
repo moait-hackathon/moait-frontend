@@ -19,7 +19,7 @@ const features: AiFeature[] = [
 
 <template>
   <section
-    class="rounded-3xl border border-dm-gray/25 bg-white p-5 shadow-md"
+    class="rounded-3xl border border-border bg-white p-5 shadow-md"
     aria-labelledby="ai-welcome-title"
   >
     <h2
@@ -37,7 +37,7 @@ const features: AiFeature[] = [
         class="flex gap-3"
       >
         <span
-          class="mt-0.5 grid size-7 shrink-0 place-items-center text-dm-mint-darker"
+          class="mt-0.5 grid size-7 shrink-0 place-items-center text-primary"
           aria-hidden="true"
         >
           <WalletCards
@@ -54,15 +54,15 @@ const features: AiFeature[] = [
 
         <div>
           <h3 class="text-sm font-extrabold leading-5 text-foreground">{{ feature.title }}</h3>
-          <p class="mt-0.5 break-keep text-xs font-medium leading-5 text-dm-gray-dark">
+          <p class="mt-0.5 break-keep text-xs font-medium leading-5 text-muted-foreground">
             {{ feature.description }}
           </p>
         </div>
       </li>
     </ul>
 
-    <div class="mt-5 border-t border-dm-gray/25 pt-4">
-      <p class="break-keep text-xs font-semibold leading-5 text-dm-gray-dark">
+    <div class="mt-5 border-t border-border pt-4">
+      <p class="break-keep text-xs font-semibold leading-5 text-muted-foreground">
         궁금한 내용이나 필요한 도움을 자유롭게 말씀해 주세요.<br />
         더 다양한 자산 관리 AI 기능도 계속 추가될 예정이에요.
       </p>

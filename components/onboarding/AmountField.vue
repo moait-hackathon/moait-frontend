@@ -22,7 +22,7 @@ const emit = defineEmits<{
     <div class="relative">
       <input
         :id="id"
-        class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white pl-3.5 pr-9 text-right text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+        class="h-[46px] w-full rounded-xl border border-border bg-white pl-3.5 pr-9 text-right text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-muted-foreground focus:border-ring focus:ring-3 focus:ring-ring/20"
         type="text"
         inputmode="numeric"
         :value="modelValue"
@@ -30,7 +30,7 @@ const emit = defineEmits<{
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />
       <span
-        class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-sm font-semibold text-dm-gray-dark"
+        class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-sm font-semibold text-muted-foreground"
       >
         원
       </span>

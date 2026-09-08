@@ -23,7 +23,7 @@ function progressWidth() {
       <button
         v-if="showBack"
         type="button"
-        class="-ml-2 grid h-10 w-10 place-items-center rounded-[10px] text-dm-gray-dark transition hover:bg-dm-gray/10"
+        class="-ml-2 grid h-10 w-10 place-items-center rounded-[10px] text-muted-foreground transition hover:bg-muted"
         aria-label="이전 단계로 이동"
         @click="emit('back')"
       >
@@ -41,21 +41,21 @@ function progressWidth() {
       ></span>
       <span
         v-if="showProgress"
-        class="text-[11px] font-medium text-dm-gray-dark"
+        class="text-[11px] font-medium text-muted-foreground"
       >
         {{ step }} / {{ totalSteps }}
       </span>
     </div>
     <div
       v-if="showProgress"
-      class="h-[3px] overflow-hidden rounded-full bg-dm-gray/15"
+      class="h-[3px] overflow-hidden rounded-full bg-muted"
       role="progressbar"
       :aria-valuenow="step"
       aria-valuemin="1"
       :aria-valuemax="totalSteps"
     >
       <span
-        class="block h-full rounded-full bg-brand transition-[width] duration-300 motion-reduce:transition-none"
+        class="block h-full rounded-full bg-primary transition-[width] duration-300 motion-reduce:transition-none"
         :style="{ width: progressWidth() }"
       ></span>
     </div>
