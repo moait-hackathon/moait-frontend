@@ -7,7 +7,7 @@ import { clearInvestmentResult } from '@/utils/investmentResult';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api';
 
 // 인증 헤더를 붙이지 않는 경로.
-const PUBLIC_PATHS = new Set(['/auth/login', '/auth/signup']);
+const PUBLIC_PATHS = new Set(['/auth/login', '/auth/signup', '/v1/investment-analyses/agreements']);
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -30,7 +30,14 @@ let redirecting = false;
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (axios.isAxiosError(error) && error.response?.status === 401 && !redirecting) {
+    const isPublicPath = error.config?.url && PUBLIC_PATHS.has(error.config.url);
+
+    if (
+      axios.isAxiosError(error) &&
+      error.response?.status === 401 &&
+      !isPublicPath &&
+      !redirecting
+    ) {
       redirecting = true;
       localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
       clearInvestmentResult();
