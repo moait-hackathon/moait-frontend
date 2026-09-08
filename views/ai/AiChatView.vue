@@ -20,9 +20,9 @@ const {
 </script>
 
 <template>
-  <main class="min-h-dvh w-full bg-dm-gray/50 p-3 font-sans text-foreground antialiased sm:p-4">
+  <main class="min-h-dvh w-full bg-muted p-3 font-sans text-foreground antialiased sm:p-4">
     <section
-      class="flex min-h-[calc(100dvh-24px)] w-full flex-col overflow-hidden rounded-[32px] bg-dm-gray-light shadow-xl sm:min-h-[calc(100dvh-32px)]"
+      class="flex min-h-[calc(100dvh-24px)] w-full flex-col overflow-hidden rounded-[32px] bg-muted shadow-xl sm:min-h-[calc(100dvh-32px)]"
       aria-label="MoAI 채팅"
     >
       <AiChatHeader @close="closeChat" />
