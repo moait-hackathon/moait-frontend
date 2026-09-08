@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 import { TERMS } from '@/constants/auth';
-import { ROUTE_NAMES } from '@/constants/routes';
+import { ONBOARDING_STEP_ROUTE } from '@/constants/routes';
 import { signup } from '@/server/authApi';
 import { useAuthStore } from '@/stores/authStore';
 import { useSignupStore } from '@/stores/signupStore';
@@ -70,7 +70,7 @@ export function useSignup() {
       authStore.setSession(session);
       await authStore.loadUser();
       signupStore.reset();
-      await router.replace({ name: ROUTE_NAMES.ONBOARDING });
+      await router.replace({ name: ONBOARDING_STEP_ROUTE[session.onboardingStep] });
     } catch (error) {
       errorMessage.value = getApiErrorMessage(error);
     } finally {

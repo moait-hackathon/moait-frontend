@@ -2,11 +2,9 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
 import { getMe } from '@/server/userApi';
-import { useOnboardingStore } from '@/stores/onboardingStore';
 import type { UserResponseDto } from '@/types/dto/user.dto';
 import type { OnboardingStep } from '@/types/onboarding';
 import { clearAccessToken, hasAccessToken, setAccessToken } from '@/utils/auth';
-import { clearInvestmentResult } from '@/utils/investmentResult';
 
 interface Session {
   accessToken: string;
@@ -18,12 +16,10 @@ export const useAuthStore = defineStore('auth', () => {
   const onboardingStep = ref<OnboardingStep | null>(null);
   const initialized = ref(false);
 
-  // 로그인/회원가입 성공 응답으로 세션을 연다. 이전 세션의 온보딩 입력 상태는 비운다.
-  // (localStorage 의 투자결과는 logout·401 에서 정리되므로 여기서는 건드리지 않는다)
+  // 로그인/회원가입 성공 응답으로 세션을 연다.
   function setSession(session: Session) {
     setAccessToken(session.accessToken);
     onboardingStep.value = session.onboardingStep;
-    useOnboardingStore().reset();
   }
 
   // 온보딩 API 응답으로 진행 단계를 갱신한다.
@@ -56,8 +52,6 @@ export const useAuthStore = defineStore('auth', () => {
 
   function logout() {
     clearAccessToken();
-    clearInvestmentResult();
-    useOnboardingStore().reset();
     reset();
   }
 

@@ -2,7 +2,6 @@ import axios, { type InternalAxiosRequestConfig } from 'axios';
 
 import { ROUTE_NAMES } from '@/constants/routes';
 import { STORAGE_KEYS } from '@/constants/storage';
-import { clearInvestmentResult } from '@/utils/investmentResult';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api';
 
@@ -33,7 +32,6 @@ api.interceptors.response.use(
     if (axios.isAxiosError(error) && error.response?.status === 401 && !redirecting) {
       redirecting = true;
       localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
-      clearInvestmentResult();
 
       const { default: router } = await import('@/router');
       if (router.currentRoute.value.name !== ROUTE_NAMES.LOGIN) {
