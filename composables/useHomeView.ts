@@ -1,9 +1,12 @@
 import { computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
+import { AI_REPORT_ROUTE_NAME } from '@/constants/aiReport';
 import { useHomeStore } from '@/stores/homeStore';
 import { formatAmount } from '@/utils/format';
 
 export function useHomeView() {
+  const router = useRouter();
   const homeStore = useHomeStore();
   const home = computed(() => homeStore.home);
 
@@ -23,6 +26,14 @@ export function useHomeView() {
 
   function formatChangeAmount(amount: number): string {
     return `${amount >= 0 ? '+' : ''}${formatAmount(amount)}원`;
+  }
+
+  function goToAiReport() {
+    void router.push({ name: AI_REPORT_ROUTE_NAME });
+  }
+
+  function goToAiChat() {
+    void router.push({ name: 'ai' });
   }
 
   const achievementDegree = computed(() => `${(home.value?.achievementRate ?? 0) * 3.6}deg`);
@@ -54,6 +65,8 @@ export function useHomeView() {
     formatDate,
     formatRate,
     formatChangeAmount,
+    goToAiReport,
+    goToAiChat,
     achievementDegree,
     graphPoints,
   };

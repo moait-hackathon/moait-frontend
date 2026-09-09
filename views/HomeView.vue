@@ -11,6 +11,8 @@ const {
   formatChangeAmount,
   achievementDegree,
   graphPoints,
+  goToAiReport,
+  goToAiChat,
 } = useHomeView();
 </script>
 
@@ -138,7 +140,8 @@ const {
 
           <button
             type="button"
-            class="flex items-center justify-between rounded-2xl border border-dm-gray/20 px-5 text-left"
+            class="flex cursor-pointer items-center justify-between rounded-2xl border border-dm-gray/20 px-5 text-left"
+            @click="goToAiReport"
           >
             <span class="text-base font-semibold text-dm-gray-dark">AI 리포트</span>
             <ChevronRight
@@ -152,7 +155,8 @@ const {
           <h2 class="text-base font-bold text-foreground">오늘은 무엇을 해볼까요?</h2>
           <button
             type="button"
-            class="mt-3 flex h-16 w-full items-center gap-3 rounded-2xl border border-dm-gray/10 bg-white px-4 shadow-md"
+            class="mt-3 flex h-16 w-full cursor-pointer items-center gap-3 rounded-2xl border border-dm-gray/10 bg-white px-4 shadow-md"
+            @click="goToAiChat"
           >
             <span
               class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-dm-mint-light"
