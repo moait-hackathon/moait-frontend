@@ -3,12 +3,20 @@ import { ArrowRight, ChevronRight, CircleUserRound, Sparkles } from 'lucide-vue-
 
 import { useHomeView } from '@/composables/useHomeView';
 
-const { home, formatAmount, formatDate, formatRate, formatChangeAmount } = useHomeView();
+const {
+  home,
+  formatAmount,
+  formatDate,
+  formatRate,
+  formatChangeAmount,
+  achievementDegree,
+  graphPoints,
+} = useHomeView();
 </script>
 
 <template>
   <main class="min-h-dvh w-full bg-white">
-    <div class="min-h-dvh w-full bg-dm-mint-light">
+    <div class="flex min-h-dvh w-full flex-col bg-dm-mint-light">
       <header class="flex h-10 items-center justify-between px-5">
         <span class="text-base font-bold text-foreground">MoAI</span>
         <button
@@ -41,7 +49,7 @@ const { home, formatAmount, formatDate, formatRate, formatChangeAmount } = useHo
               <strong class="text-2xl font-extrabold text-deep-green">
                 {{ formatAmount(home?.currentAmount ?? 0) }}원
               </strong>
-              <div class="mb-1 text-xs leading-5 text-dm-gray-dark">
+              <div class="mb-1 text-xs text-end leading-5 text-dm-gray-dark">
                 <span>목표 금액</span>
                 <br />
                 <span>/ {{ formatAmount(home?.targetAmount ?? 0) }}원</span>
@@ -50,7 +58,10 @@ const { home, formatAmount, formatDate, formatRate, formatChangeAmount } = useHo
           </div>
 
           <div
-            class="relative flex h-22 w-22 items-center justify-center rounded-full border-8 border-dm-mint-dark"
+            class="relative flex h-22 w-22 items-center justify-center rounded-full"
+            :style="{
+              background: `conic-gradient(#328c87 ${achievementDegree}, #D0ECEB 0deg)`,
+            }"
           >
             <div class="flex h-17 w-17 items-center justify-center rounded-full bg-dm-mint-light">
               <span class="text-2xl font-bold text-deep-green">
@@ -61,13 +72,13 @@ const { home, formatAmount, formatDate, formatRate, formatChangeAmount } = useHo
         </div>
       </section>
 
-      <section class="-mt-1 rounded-t-3xl bg-white px-5 pb-8 pt-6">
+      <section class="-mt-1 flex-1 rounded-t-3xl bg-white px-5 pb-8 pt-6">
         <div class="rounded-2xl border border-dm-gray/20 px-4 py-4">
           <p class="text-xs font-medium text-dm-gray-dark">전체 자산</p>
           <div class="mt-2 flex items-end justify-between">
             <div>
               <p
-                class="text-2xl font-extrabold"
+                class="text-xl font-extrabold"
                 :class="
                   (home?.totalAssetChangeAmount ?? 0) >= 0 ? 'text-brand-dark' : 'text-sky-09'
                 "
@@ -81,8 +92,10 @@ const { home, formatAmount, formatDate, formatRate, formatChangeAmount } = useHo
 
             <div class="h-18 w-42">
               <svg
+                v-if="graphPoints"
                 viewBox="0 0 170 70"
                 class="h-full w-full"
+                preserveAspectRatio="none"
                 aria-label="전체 자산 수익률 그래프"
               >
                 <line
@@ -94,6 +107,15 @@ const { home, formatAmount, formatDate, formatRate, formatChangeAmount } = useHo
                   stroke="currentColor"
                   stroke-width="1"
                   stroke-dasharray="4 3"
+                />
+                <polyline
+                  :points="graphPoints"
+                  fill="none"
+                  class="text-deep-green"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 />
               </svg>
             </div>
@@ -132,7 +154,9 @@ const { home, formatAmount, formatDate, formatRate, formatChangeAmount } = useHo
             type="button"
             class="mt-3 flex h-16 w-full items-center gap-3 rounded-2xl border border-dm-gray/10 bg-white px-4 shadow-md"
           >
-            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sky-02">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-dm-mint-light"
+            >
               <Sparkles
                 :size="17"
                 class="text-foreground"

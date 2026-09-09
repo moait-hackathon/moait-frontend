@@ -25,11 +25,36 @@ export function useHomeView() {
     return `${amount >= 0 ? '+' : ''}${formatAmount(amount)}원`;
   }
 
+  const achievementDegree = computed(() => `${(home.value?.achievementRate ?? 0) * 3.6}deg`);
+
+  const graphPoints = computed(() => {
+    const graph = home.value?.assetReturnRateGraph ?? [];
+    if (graph.length === 0) return '';
+
+    const width = 170;
+    const height = 70;
+    const padding = 5;
+    const rates = [0, ...graph.map((item) => item.returnRate)];
+    const min = Math.min(...rates);
+    const max = Math.max(...rates);
+    const range = max - min || 1;
+
+    return graph
+      .map((item, index) => {
+        const x = padding + (index / Math.max(graph.length - 1, 1)) * (width - padding * 2);
+        const y = height - padding - ((item.returnRate - min) / range) * (height - padding * 2);
+        return `${x},${y}`;
+      })
+      .join(' ');
+  });
+
   return {
     home,
     formatAmount,
     formatDate,
     formatRate,
     formatChangeAmount,
+    achievementDegree,
+    graphPoints,
   };
 }
