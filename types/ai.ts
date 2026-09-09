@@ -14,9 +14,9 @@ export interface AiFeature {
 
 export interface RiskScore {
   preferenceScore: number;
-  userLimit: number;
-  serviceLimit: number;
-  finalLimit: number;
+  userLimit: number | null;
+  serviceLimit: number | null;
+  finalLimit: number | null;
   profileType: string;
   profileTypeLabel: string;
 }
@@ -30,9 +30,9 @@ export interface RiskRecommendation {
 }
 
 export interface GoalRequirement {
-  requiredAnnualReturnRate: number;
-  rangeMin: number;
-  rangeMax: number;
+  requiredAnnualReturnRate: number | null;
+  rangeMin: number | null;
+  rangeMax: number | null;
   realistic: boolean;
   investmentMonths: number;
   calculationMethod: string;
@@ -42,10 +42,10 @@ export interface GoalRequirement {
 export interface InvestmentAgreement {
   status: string;
   statusLabel: string;
-  recommendedRiskScore: number;
+  recommendedRiskScore: number | null;
   summary: string;
   rationale: string;
-  recommendedStrategy: string;
+  recommendedStrategy: string | null;
   alternatives: string[];
   cautions: string[];
   aiGenerated: boolean;

@@ -6,7 +6,7 @@ import { STORAGE_KEYS } from '@/constants/storage';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api';
 
 // 인증 헤더를 붙이지 않는 경로.
-const PUBLIC_PATHS = new Set(['/auth/login', '/auth/signup', '/v1/investment-analyses/agreements']);
+const PUBLIC_PATHS = new Set(['/auth/login', '/auth/signup']);
 
 export const api = axios.create({
   baseURL: API_BASE_URL,

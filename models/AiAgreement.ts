@@ -21,8 +21,10 @@ const PROFILE_TYPE_LABELS: Record<string, string> = {
 
 const AGREEMENT_STATUS_LABELS: Record<string, string> = {
   LOWER_RISK_SUFFICIENT: '낮은 위험으로도 목표 달성이 가능해요',
-  ALIGNED: '투자성향과 목표가 잘 맞아요',
-  ADJUSTMENT_REQUIRED: '목표 계획 조정이 필요해요',
+  GOAL_INCREASE_POSSIBLE: '목표를 더 높일 여력이 있어요',
+  SUITABLE: '투자성향과 목표가 잘 맞아요',
+  CONDITIONAL: '목표 계획을 일부 조정해 주세요',
+  UNSUITABLE: '현재 조건으로는 목표 조정이 필요해요',
 };
 
 const CALCULATION_METHOD_LABELS: Record<string, string> = {

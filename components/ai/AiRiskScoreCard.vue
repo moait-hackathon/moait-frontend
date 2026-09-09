@@ -25,15 +25,21 @@ defineProps<{
     <dl class="mt-3 grid grid-cols-3 gap-1 border-t border-dm-gray/25 pt-3 text-center">
       <div>
         <dt class="text-[9px] font-semibold text-dm-gray-dark">최종 상한</dt>
-        <dd class="mt-0.5 text-xs font-extrabold text-foreground">{{ score.finalLimit }}</dd>
+        <dd class="mt-0.5 text-xs font-extrabold text-foreground">
+          {{ score.finalLimit ?? '-' }}
+        </dd>
       </div>
       <div>
         <dt class="text-[9px] font-semibold text-dm-gray-dark">사용자 상한</dt>
-        <dd class="mt-0.5 text-xs font-extrabold text-foreground">{{ score.userLimit }}</dd>
+        <dd class="mt-0.5 text-xs font-extrabold text-foreground">
+          {{ score.userLimit ?? '-' }}
+        </dd>
       </div>
       <div>
         <dt class="text-[9px] font-semibold text-dm-gray-dark">서비스 상한</dt>
-        <dd class="mt-0.5 text-xs font-extrabold text-foreground">{{ score.serviceLimit }}</dd>
+        <dd class="mt-0.5 text-xs font-extrabold text-foreground">
+          {{ score.serviceLimit ?? '-' }}
+        </dd>
       </div>
     </dl>
   </article>

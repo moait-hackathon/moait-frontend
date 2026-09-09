@@ -62,22 +62,32 @@ defineProps<{
           </h3>
         </div>
         <p
+          v-if="analysis.agreement.recommendedStrategy"
           class="mt-2 break-keep rounded-2xl bg-dm-mint-light px-4 py-3 text-sm font-bold leading-6 text-btn-mt-dark"
         >
           {{ analysis.agreement.recommendedStrategy }}
+        </p>
+        <p
+          v-else
+          class="mt-2 break-keep rounded-2xl bg-pink-01 px-4 py-3 text-sm font-bold leading-6 text-brand-dark"
+        >
+          현재 조건에서는 추천 전략을 제시하기 어려워요. 아래 조정안을 확인해 주세요.
         </p>
 
         <dl class="mt-3 grid grid-cols-3 gap-2 text-center">
           <div class="rounded-2xl bg-dm-gray-light px-2 py-3">
             <dt class="text-[10px] font-semibold text-dm-gray-dark">추천 위험점수</dt>
             <dd class="mt-1 text-lg font-black text-foreground">
-              {{ analysis.agreement.recommendedRiskScore }}
+              {{ analysis.agreement.recommendedRiskScore ?? '-' }}
             </dd>
           </div>
           <div class="rounded-2xl bg-dm-gray-light px-2 py-3">
             <dt class="text-[10px] font-semibold text-dm-gray-dark">필요 연 수익률</dt>
             <dd class="mt-1 text-lg font-black text-foreground">
-              {{ analysis.goalRequirement.requiredAnnualReturnRate }}%
+              <template v-if="analysis.goalRequirement.requiredAnnualReturnRate !== null">
+                {{ analysis.goalRequirement.requiredAnnualReturnRate }}%
+              </template>
+              <template v-else>-</template>
             </dd>
           </div>
           <div class="rounded-2xl bg-dm-gray-light px-2 py-3">
@@ -143,7 +153,15 @@ defineProps<{
           <div class="flex items-center justify-between gap-3 py-3 text-xs">
             <dt class="font-semibold text-dm-gray-dark">목표 위험 범위</dt>
             <dd class="font-extrabold text-foreground">
-              {{ analysis.goalRequirement.rangeMin }}~{{ analysis.goalRequirement.rangeMax }}점
+              <template
+                v-if="
+                  analysis.goalRequirement.rangeMin !== null &&
+                  analysis.goalRequirement.rangeMax !== null
+                "
+              >
+                {{ analysis.goalRequirement.rangeMin }}~{{ analysis.goalRequirement.rangeMax }}점
+              </template>
+              <template v-else>-</template>
             </dd>
           </div>
           <div class="flex items-center justify-between gap-3 py-3 text-xs">
