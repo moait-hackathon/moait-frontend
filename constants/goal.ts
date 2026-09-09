@@ -62,9 +62,7 @@ export const INVESTMENT_EXPERIENCE_OPTIONS = [
 ] as const satisfies readonly Option<InvestmentExperience>[];
 
 // 2/5. 월 투자 가능 금액 빠른 선택(원).
-export const MONTHLY_INVESTABLE_QUICK_AMOUNTS = [
-  100_000, 300_000, 500_000, 1_000_000,
-] as const;
+export const MONTHLY_INVESTABLE_QUICK_AMOUNTS = [100_000, 300_000, 500_000, 1_000_000] as const;
 
 // 금액 입력 상한(원).
 export const GOAL_AMOUNT_LIMITS = {
@@ -80,4 +78,13 @@ export const JOINT_RISK_PROFILE_TYPE_LABEL = {
   NEUTRAL: '위험중립형',
   ACTIVE: '적극투자형',
   AGGRESSIVE: '공격투자형',
+} as const satisfies Record<JointRiskProfileType, string>;
+
+// 유형별 결과 이미지. 파일은 public/risk-profile/ 에 둔다.
+export const JOINT_RISK_PROFILE_TYPE_IMAGE = {
+  STABLE: '/risk-profile/stable.png',
+  STABLE_SEEKING: '/risk-profile/stable-seeking.png',
+  NEUTRAL: '/risk-profile/neutral.png',
+  ACTIVE: '/risk-profile/active.png',
+  AGGRESSIVE: '/risk-profile/aggressive.png',
 } as const satisfies Record<JointRiskProfileType, string>;

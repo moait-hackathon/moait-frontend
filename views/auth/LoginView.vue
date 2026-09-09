@@ -58,7 +58,9 @@ const { phone, password, errorMessage, isSubmitting, submit } = useLogin();
             :aria-invalid="Boolean(errorMessage)"
             required
           />
-          <p class="mt-1.5 text-[11px] leading-4 text-muted-foreground">비밀번호는 8자 이상이에요.</p>
+          <p class="mt-1.5 text-[11px] leading-4 text-muted-foreground">
+            비밀번호는 8자 이상이에요.
+          </p>
         </div>
 
         <p
@@ -80,16 +82,12 @@ const { phone, password, errorMessage, isSubmitting, submit } = useLogin();
       </form>
 
       <!-- TODO: 소셜 로그인 연결 (현재 UI만, 동작 없음) -->
-      <!-- TODO: 카카오 연결 시 브랜드 색상(#FEE500) 적용 — 지금은 준비 중이라 muted 처리 -->
       <button
-        class="mt-3 flex h-[50px] w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-muted opacity-60"
+        class="mt-3 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-[#FEE500] transition hover:brightness-95"
         type="button"
-        disabled
-        aria-label="카카오 로그인 (준비 중)"
+        aria-label="카카오 로그인"
       >
-        <span class="text-[15px] font-extrabold leading-none text-foreground/[0.85]">
-          카카오 로그인 (준비 중)
-        </span>
+        <span class="text-[15px] font-extrabold leading-none text-black/85"> 카카오 로그인 </span>
       </button>
 
       <nav
