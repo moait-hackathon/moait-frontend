@@ -20,7 +20,7 @@ const allAgreed = computed(() => TERMS.every((term) => props.agreements[term.ter
 
 <template>
   <fieldset
-    class="m-0 min-w-0 rounded-2xl border border-dm-gray/40 bg-white p-3.5 shadow-lg shadow-dm-gray/20"
+    class="m-0 min-w-0 rounded-2xl border border-border bg-white p-3.5 shadow-lg shadow-black/5"
   >
     <legend class="sr-only">약관 동의</legend>
 
@@ -32,7 +32,7 @@ const allAgreed = computed(() => TERMS.every((term) => props.agreements[term.ter
         @change="emit('toggleAll', ($event.target as HTMLInputElement).checked)"
       />
       <span
-        class="grid h-[22px] w-[22px] place-items-center rounded-[7px] border border-dm-gray/50 bg-white text-[13px] font-black text-transparent peer-checked:border-pink-03 peer-checked:bg-brand peer-checked:text-white"
+        class="grid h-[22px] w-[22px] place-items-center rounded-[7px] border border-border bg-white text-[13px] font-black text-transparent peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground"
         aria-hidden="true"
       >
         ✓
@@ -40,14 +40,14 @@ const allAgreed = computed(() => TERMS.every((term) => props.agreements[term.ter
       <strong class="text-sm font-extrabold text-foreground">약관 전체 동의</strong>
     </label>
 
-    <div class="my-3 h-px bg-dm-gray/20"></div>
+    <div class="my-3 h-px bg-muted"></div>
 
     <div
       v-for="term in TERMS"
       :key="term.termsType"
       class="flex min-h-9 items-center justify-between gap-2"
     >
-      <label class="flex min-w-0 cursor-pointer items-center gap-2 text-xs text-dm-gray-dark">
+      <label class="flex min-w-0 cursor-pointer items-center gap-2 text-xs text-muted-foreground">
         <input
           class="peer sr-only"
           type="checkbox"
@@ -55,7 +55,7 @@ const allAgreed = computed(() => TERMS.every((term) => props.agreements[term.ter
           @change="emit('toggle', term.termsType, ($event.target as HTMLInputElement).checked)"
         />
         <span
-          class="grid h-[19px] w-[19px] shrink-0 place-items-center rounded-md border border-dm-gray/50 bg-white text-[11px] font-black text-transparent peer-checked:border-pink-03 peer-checked:bg-brand peer-checked:text-white"
+          class="grid h-[19px] w-[19px] shrink-0 place-items-center rounded-md border border-border bg-white text-[11px] font-black text-transparent peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground"
           aria-hidden="true"
         >
           ✓
@@ -64,14 +64,14 @@ const allAgreed = computed(() => TERMS.every((term) => props.agreements[term.ter
         <em
           class="rounded-full px-1.5 py-0.5 text-[9px] font-extrabold not-italic"
           :class="
-            term.required ? 'bg-pink-01 text-brand' : 'bg-dm-gray/20 text-dm-gray-dark'
+            term.required ? 'bg-accent text-primary' : 'bg-muted text-muted-foreground'
           "
         >
           {{ term.required ? '필수' : '선택' }}
         </em>
       </label>
       <RouterLink
-        class="shrink-0 px-1 py-1.5 text-[11px] text-dm-gray-dark no-underline hover:text-brand-dark"
+        class="shrink-0 px-1 py-1.5 text-[11px] text-muted-foreground no-underline hover:text-primary"
         :to="{ name: ROUTE_NAMES.TERMS, params: { termsType: term.slug } }"
         :aria-label="`${term.label} 전문 보기`"
       >

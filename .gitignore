@@ -41,3 +41,6 @@ __screenshots__/
 *.timestamp-*-*.mjs
 
 .env
+
+# 로컬 디자인 export (피그마 작업용, 재생성 가능)
+design-export/

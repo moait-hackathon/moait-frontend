@@ -37,7 +37,7 @@ const {
     >
       <div>
         <label
-          class="mb-1.5 block text-xs font-bold text-dm-gray-dark"
+          class="mb-1.5 block text-xs font-bold text-muted-foreground"
           for="signup-name"
         >
           이름
@@ -45,7 +45,7 @@ const {
         <input
           id="signup-name"
           v-model="name"
-          class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+          class="h-[46px] w-full rounded-xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-muted-foreground focus:border-ring focus:ring-3 focus:ring-ring/20"
           type="text"
           name="name"
           autocomplete="name"
@@ -57,7 +57,7 @@ const {
 
       <div>
         <label
-          class="mb-1.5 block text-xs font-bold text-dm-gray-dark"
+          class="mb-1.5 block text-xs font-bold text-muted-foreground"
           for="signup-phone"
         >
           휴대폰 번호
@@ -65,7 +65,7 @@ const {
         <input
           id="signup-phone"
           v-model="phone"
-          class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+          class="h-[46px] w-full rounded-xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-muted-foreground focus:border-ring focus:ring-3 focus:ring-ring/20"
           type="tel"
           name="phone"
           inputmode="numeric"
@@ -76,7 +76,7 @@ const {
       </div>
 
       <fieldset>
-        <legend class="mb-1.5 text-xs font-bold text-dm-gray-dark">성별</legend>
+        <legend class="mb-1.5 text-xs font-bold text-muted-foreground">성별</legend>
         <div class="grid grid-cols-2 gap-2">
           <label
             v-for="option in GENDER_OPTIONS"
@@ -92,7 +92,7 @@ const {
               @change="gender = option.value"
             />
             <span
-              class="grid h-[46px] place-items-center rounded-xl border border-dm-gray/40 bg-white text-sm font-bold text-dm-gray-dark transition peer-checked:border-pink-03 peer-checked:bg-pink-01 peer-checked:text-brand-dark"
+              class="grid h-[46px] place-items-center rounded-xl border border-border bg-white text-sm font-bold text-muted-foreground transition peer-checked:border-primary peer-checked:bg-accent peer-checked:text-primary"
             >
               {{ option.label }}
             </span>
@@ -102,7 +102,7 @@ const {
 
       <div>
         <label
-          class="mb-1.5 block text-xs font-bold text-dm-gray-dark"
+          class="mb-1.5 block text-xs font-bold text-muted-foreground"
           for="signup-password"
         >
           비밀번호
@@ -110,19 +110,19 @@ const {
         <input
           id="signup-password"
           v-model="password"
-          class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+          class="h-[46px] w-full rounded-xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-muted-foreground focus:border-ring focus:ring-3 focus:ring-ring/20"
           type="password"
           name="password"
           autocomplete="new-password"
           placeholder="비밀번호를 입력해주세요"
           required
         />
-        <p class="mt-1.5 text-[11px] leading-4 text-dm-gray-dark">비밀번호는 8자 이상이에요.</p>
+        <p class="mt-1.5 text-[11px] leading-4 text-muted-foreground">비밀번호는 8자 이상이에요.</p>
       </div>
 
       <div>
         <label
-          class="mb-1.5 block text-xs font-bold text-dm-gray-dark"
+          class="mb-1.5 block text-xs font-bold text-muted-foreground"
           for="signup-password-confirm"
         >
           비밀번호 확인
@@ -130,7 +130,7 @@ const {
         <input
           id="signup-password-confirm"
           v-model="passwordConfirm"
-          class="h-[46px] w-full rounded-xl border border-dm-gray/40 bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-dm-gray focus:border-pink-03 focus:ring-3 focus:ring-brand/10"
+          class="h-[46px] w-full rounded-xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition placeholder:font-medium placeholder:text-muted-foreground focus:border-ring focus:ring-3 focus:ring-ring/20"
           type="password"
           name="passwordConfirm"
           autocomplete="new-password"
@@ -141,10 +141,10 @@ const {
           class="mt-1.5 text-[11px] leading-4"
           :class="
             passwordConfirm.length === 0
-              ? 'text-dm-gray-dark'
+              ? 'text-muted-foreground'
               : passwordsMatch
-                ? 'text-deep-green'
-                : 'text-brand-dark'
+                ? 'text-foreground'
+                : 'text-primary'
           "
         >
           {{
@@ -166,14 +166,14 @@ const {
       <div class="mt-auto pt-2">
         <p
           v-if="errorMessage"
-          class="mb-2 text-xs font-semibold text-brand-dark"
+          class="mb-2 text-xs font-semibold text-primary"
           role="alert"
           aria-live="polite"
         >
           {{ errorMessage }}
         </p>
         <button
-          class="grid min-h-[50px] w-full place-items-center rounded-xl bg-brand text-[15px] font-extrabold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
+          class="grid min-h-[50px] w-full place-items-center rounded-xl bg-primary text-[15px] font-extrabold text-primary-foreground transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
           type="submit"
           :disabled="isSubmitting || !canSubmit"
         >
