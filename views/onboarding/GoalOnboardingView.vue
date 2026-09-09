@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { nextTick, ref, watch } from 'vue';
+
 import AuthScreen from '@/components/auth/AuthScreen.vue';
+import CalendarDatePicker from '@/components/common/CalendarDatePicker.vue';
 import OnboardingStepHeader from '@/components/common/OnboardingStepHeader.vue';
 import GoalOnboardingFooter from '@/components/goal/GoalOnboardingFooter.vue';
 import GoalResultCard from '@/components/goal/GoalResultCard.vue';
@@ -14,7 +17,7 @@ import {
   MONTHLY_SURPLUS_BAND_OPTIONS,
 } from '@/constants/goal';
 import { useGoalOnboarding } from '@/composables/useGoalOnboarding';
-import { formatAmount } from '@/utils/format';
+import { formatAmount, parseAmount } from '@/utils/format';
 import type {
   EmergencyFundMonths,
   InvestmentExperience,
@@ -26,7 +29,6 @@ import type {
 const {
   step,
   totalSteps,
-  minDate,
   isSubmitting,
   isSubmitted,
   isLastStep,
@@ -54,6 +56,14 @@ const STEP_TITLES = [
   '손실에 어떻게 반응하나요?',
   '투자 경험을 알려주세요',
 ];
+
+// 단계 이동 시 스크롤을 맨 위로 되돌린다.
+const mainRef = ref<HTMLElement | null>(null);
+watch(step, async () => {
+  await nextTick();
+  mainRef.value?.scrollTo({ top: 0 });
+  window.scrollTo({ top: 0 });
+});
 </script>
 
 <template>
@@ -82,10 +92,11 @@ const STEP_TITLES = [
           @back="back"
         />
 
-        <main class="flex-1 overflow-y-auto px-5 pb-6 pt-4 sm:px-8">
-          <h1
-            class="text-[22px] font-extrabold leading-tight tracking-[-0.03em] text-foreground"
-          >
+        <main
+          ref="mainRef"
+          class="flex-1 overflow-y-auto px-5 pb-6 pt-4 sm:px-8"
+        >
+          <h1 class="text-[22px] font-extrabold leading-tight tracking-[-0.03em] text-foreground">
             {{ STEP_TITLES[step - 1] }}
           </h1>
 
@@ -100,18 +111,14 @@ const STEP_TITLES = [
               label="목표 금액은 얼마인가요?"
             />
             <div>
-              <label
-                class="mb-1.5 block text-sm font-bold text-foreground"
-                for="goal-target-date"
-              >
+              <span class="mb-1.5 block text-sm font-bold text-foreground">
                 언제까지 모으고 싶나요?
-              </label>
-              <input
-                id="goal-target-date"
+              </span>
+              <CalendarDatePicker
                 v-model="targetDate"
-                class="h-[46px] w-full rounded-xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground outline-none transition focus:border-ring focus:ring-3 focus:ring-ring/20"
-                type="date"
-                :min="minDate"
+                title="목표일 선택"
+                placeholder="목표일을 선택해주세요"
+                :exclude-today="true"
               />
             </div>
           </div>
@@ -138,7 +145,11 @@ const STEP_TITLES = [
                   :key="amount"
                   type="button"
                   class="rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground transition hover:border-ring hover:bg-accent hover:text-primary"
-                  @click="monthlyInvestableAmount = formatAmount(amount)"
+                  @click="
+                    monthlyInvestableAmount = formatAmount(
+                      parseAmount(monthlyInvestableAmount) + amount
+                    )
+                  "
                 >
                   {{ formatAmount(amount) }}원
                 </button>
@@ -199,9 +210,7 @@ const STEP_TITLES = [
         </main>
 
         <GoalOnboardingFooter
-          :label="
-            isSubmitting ? '분석 중...' : isLastStep ? '제출하고 결과 보기' : '다음'
-          "
+          :label="isSubmitting ? '분석 중...' : isLastStep ? '제출하고 결과 보기' : '다음'"
           :disabled="!canProceed || isSubmitting"
           :error-message="errorMessage"
           @primary="next"
