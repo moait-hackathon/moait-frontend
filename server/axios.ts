@@ -29,7 +29,14 @@ let redirecting = false;
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (axios.isAxiosError(error) && error.response?.status === 401 && !redirecting) {
+    const isPublicPath = error.config?.url && PUBLIC_PATHS.has(error.config.url);
+
+    if (
+      axios.isAxiosError(error) &&
+      error.response?.status === 401 &&
+      !isPublicPath &&
+      !redirecting
+    ) {
       redirecting = true;
       localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
 
