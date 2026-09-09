@@ -28,13 +28,14 @@ export function parseAmount(value: string): number {
 
 // 금액을 한글 억/만 단위로 표시한다. 예) 195_000_000 → "1억 9,500만 원", 6_000_000 → "600만 원".
 // 만 단위로 떨어지지 않는 나머지는 그대로 원 단위로 붙인다.
-export function formatKrwUnit(value: number): string {
+// truncateToMan: true 면 만원 미만(천원 단위 이하)을 버린다. 예) 41_234_000 → "4,123만 원".
+export function formatKrwUnit(value: number, options: { truncateToMan?: boolean } = {}): string {
   const won = Math.round(Math.abs(value));
   if (won === 0) return '0원';
 
   const eok = Math.floor(won / 100_000_000);
   const man = Math.floor((won % 100_000_000) / 10_000);
-  const rest = won % 10_000;
+  const rest = options.truncateToMan ? 0 : won % 10_000;
 
   const parts: string[] = [];
   if (eok) parts.push(`${eok.toLocaleString('ko-KR')}억`);
@@ -42,6 +43,7 @@ export function formatKrwUnit(value: number): string {
   if (rest) parts.push(`${rest.toLocaleString('ko-KR')}`);
 
   const sign = value < 0 ? '-' : '';
+  if (parts.length === 0) return `${sign}0원`;
   return `${sign}${parts.join(' ')} 원`;
 }
 

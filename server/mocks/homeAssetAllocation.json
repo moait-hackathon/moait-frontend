@@ -1,0 +1,9 @@
+{
+  "totalAmount": 42000000,
+  "slices": [
+    { "key": "CASH", "label": "예·적금 / 현금성", "ratio": 55, "amount": 23100000 },
+    { "key": "BOND", "label": "채권형 자산", "ratio": 25, "amount": 10500000 },
+    { "key": "EQUITY", "label": "주식형 ETF", "ratio": 15, "amount": 6300000 },
+    { "key": "ALT", "label": "금 등 대체자산", "ratio": 5, "amount": 2100000 }
+  ]
+}

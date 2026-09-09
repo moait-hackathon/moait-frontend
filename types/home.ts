@@ -3,6 +3,18 @@ export interface AssetReturnRateGraph {
   returnRate: number;
 }
 
+export interface HomeAssetAllocationSlice {
+  key: string;
+  label: string;
+  ratio: number;
+  amount: number;
+}
+
+export interface HomeAssetAllocation {
+  totalAmount: number;
+  slices: HomeAssetAllocationSlice[];
+}
+
 export interface Home {
   userName: string;
   coupleName: string;
@@ -15,4 +27,5 @@ export interface Home {
   assetReturnRateGraph: AssetReturnRateGraph[];
   todayAssetReturnRate: number;
   todayAssetChangeAmount: number;
+  assetAllocation: HomeAssetAllocation;
 }
